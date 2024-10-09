@@ -1,0 +1,55 @@
+import random
+
+def choose_list(select_list,fruit_list,color_list,animal_list):
+
+    if select_list== "fruit":
+        return fruit_list
+    elif select_list== "animal":
+        return animal_list
+    elif select_list== "color":
+        return color_list
+    else:
+        print("ValueError! please enter(fruit/color/animal)")
+
+def choose_word(select_list,fruit_list,color_list,animal_list):
+    the_list = choose_list(select_list,fruit_list,color_list,animal_list)
+    the_word = random.choice(the_list)
+    return(the_word)
+    
+def run_game(select_list,fruit_list,color_list,animal_list):
+    the_word= choose_word(select_list,fruit_list,color_list,animal_list)
+    the_word= list(the_word)
+    num= len(the_word)
+    present_word= ["_"] * num
+    counter=0
+    while counter<10 and "_" in present_word:
+        the_char= input("please enter the char")
+        if len(the_char) !=1 or not the_char.isalpha():
+            print("invalid input, try again")
+            continue
+        if the_char in the_word:
+            for i,char in enumerate(the_word):
+                if char== the_char:
+                    present_word[i] = the_char
+            print(f"Congratulations! present word is: {present_word}")
+        else:
+            print("No, it is not in this word,try again")
+            counter+=1
+    if present_word == the_word:
+        print("wow! great! you won!")
+        
+
+fruit_list = ["apple","orange","banana","Strawberries","melon"]
+color_list= ["red","pink","purple","blue","black","white"]
+animal_list= ["cow","cat","horse","dog","fish"]
+
+while True:
+    yes_or_no = input("do you want start a new game?(yes,no)").lower()
+    if yes_or_no== "no":
+        print("play, bye bye")
+        break
+    elif yes_or_no== "yes":
+        select_list= input("please choose a topic(fruit/color/animal)").lower()
+        run_game(select_list,fruit_list,color_list,animal_list)
+    else:
+        print("invalid input, try again")
