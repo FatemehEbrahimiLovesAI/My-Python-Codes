@@ -1,0 +1,33 @@
+import random
+
+def choice_num():
+    random_num= random.randint(1,100)
+    return random_num
+    
+def run_game():
+    print("start game")
+    random_num= choice_num()
+    user_choice=0
+    counter=0
+    while counter<10:
+        user_choice= int(input("please enter you num[1,100] :"))
+        counter+=1
+        if user_choice== random_num:
+            print("You won! Congratulations!")
+            break
+        else:
+            print("not correct, please try again")
+    if counter==10 and user_choice != random_num:
+        print("sorry, you lost")
+    print(f"the number= {random_num}")
+
+while True:
+    yes_or_no=input("do you want to start a game?[yes/no]").lower()
+    if yes_or_no == "yes":
+        run_game()
+    elif yes_or_no =="no":
+        print("ok, thank you for your time")
+        break
+    else:
+        print("Invalid input")
+            
