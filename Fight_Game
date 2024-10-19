@@ -1,0 +1,163 @@
+from random import choice
+
+class Character():
+    
+    def __init__(self, name: str, health: int, damage: int):
+        self.name = name
+        self.health = health
+        self.damage = damage
+        self.max_health = health
+    
+    def __str__(self):
+        return f"name: {self.name}\nhealth= {self.health}\ndamage= {self.damage}"
+        
+    def attack(self, other):
+        other.take_damage(self.damage)
+        
+    def take_damage(self, other):
+        self.health -= other.damage
+        
+def choice_character(characters):
+    """
+    choice a character from list
+    """
+    try:
+        name = input("please enter character's name:").lower()
+        for character in characters:
+            if character.name.lower() == name:
+                return character
+    except:
+        print("invalid input, try again")
+        return choice_character(characters)
+
+        
+class Warrior(Character):
+    
+    def __init__(self, name: str, health: int, damage: int, coefficient: int):
+        super().__init__(name, health, damage)
+        self.coefficient = coefficient
+       
+    def special_action(self, other):
+        self.damage *= self.coefficient
+        self.attack(other)
+        self.damage /= self.coefficient
+    
+class Healer(Character):
+    
+    def __init__(self, name: str, health: int, damage: int, heal: int):
+        super().__init__(name, health, damage)
+        self.heal = heal
+       
+    def special_action(self, characters):
+        other = choice_character(characters)
+        other.health += self.heal
+        if other.health > other.max_health:
+            other.health = other.max_health
+            
+class Mage(Character):
+    
+    def __init__(self, name: str, health: int, damage: int, magic: int):
+        super().__init__(name, health, damage)
+        self.magic = magic
+        
+    def special_action(self, other):
+        other.damage -= self.magic
+            
+            
+michael = Warrior("Michael", 150, 20, 3)
+lisa = Warrior("Lisa", 100, 18, 2)
+john = Warrior("John", 120, 15, 2)
+layla = Healer("Layla", 50, 5, 30)
+george = Mage("George", 110, 12, 2)
+characters = [michael, lisa, john, layla, george]
+ 
+     
+def user_characters(characters):
+    """
+    2 characters which player chose 
+    """
+    for i, character in enumerate(characters):
+        print(f"character {i+1} : {character.name}")
+    character1 = int(input("please enter your first character's number: "))
+    character2 = int(input("please enter your second character's number: "))
+    user_character_list = [characters[character1-1], characters[character2-1]]
+    return user_character_list
+    
+def bot_characters(characters):
+    """
+    bot chooses 2 random characters 
+    """
+    character1 = choice(characters)
+    character2 = choice(characters)
+    bot_character_list = [character1, character2]
+    return bot_character_list
+
+
+choice_list = ["attack", "special_action"]
+
+def bot_choice_op(bot_char, choice_list):
+    """
+    bot chooses a random operation
+    """
+    b_choice = choice(choice_list)
+    return b_choice
+    
+#get player info
+print("welcome! please enter your favorite characters:") 
+user_chars = user_characters(characters)
+bot_chars = bot_characters(characters)
+
+#start game
+while True:
+    #player chooses one of their characters 
+    player_char1= user_chars[0]
+    player_char2= user_chars[1]
+    bot_char1= bot_chars[0]
+    bot_char2= bot_chars[1]
+    num = int(input(f"please choose your character number:(1-{player_char1.name},2-{player_char2.name})"))
+    if num==1:
+        present_char= player_char1
+    elif num==2:
+        present_char=player_char2
+    else:
+        print("invalid input!")
+        
+    print(f"your characters= {player_char1.name},{player_char2.name}\nenemy characters= {bot_char1.name},{bot_char2.name}")
+    
+    #bot chooses one of its characters
+    bot_char = choice(bot_chars)
+    
+    #player chooses an operation
+    op = int(input("choose Operation!\n 1-attack \t 2-run \t 3-special_action: "))
+    if op == 1:
+        present_char.attack(bot_char)
+    elif op == 2:
+        print("oh, you ran away! bad ending")
+        break
+    elif op == 3:
+        present_char.special_action(bot_char)
+    else:
+        print("invalid input, try again!")
+        continue
+    
+    #bot chooses an operation
+    bot_op = bot_choice_op(bot_char, choice_list)
+    if bot_op == "attack":
+        bot_char.attack(present_char)
+    elif bot_op == "special_action":
+        bot_char.special_action(present_char)
+    
+    #check if characters are dead
+    if present_char.health <= 0:
+        user_chars.remove(present_char)
+    
+    if bot_char.health <= 0:
+        bot_chars.remove(bot_char)
+    
+    #check game over
+    if len(user_chars) == 0:
+        print("you lost!")
+        break
+    elif len(bot_chars) == 0:
+        print("wow! you win!")
+        break
