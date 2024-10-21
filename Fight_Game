@@ -179,5 +179,3 @@ while True:
     elif len(bot_chars) == 0:
         print("Congratulations! You won!")
         break
-
-خطاهای کد من رو لطفا بگو
