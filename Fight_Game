@@ -23,19 +23,19 @@ class Character():
             self.health = 0
 
 class Warrior(Character):
-    def init(self, name: str, health: int, damage: int, coefficient: int):
-        super().init(name, health, damage)
+    def __init__(self, name: str, health: int, damage: int, coefficient: int):
+        super().__init__(name, health, damage)
         self.coefficient = coefficient
 
     def special_action(self, other):
         self.damage *= self.coefficient
         self.attack(other)
-        print(f"{self.name} hurt {other.name} a lot,{other.name} health remaining= {other.health}")
+        print(f"{self.name} hurt {other.name} a lot, {other.name} health remaining= {other.health}")
         self.damage /= self.coefficient
 
 class Healer(Character):
-    def init(self, name: str, health: int, damage: int, heal: int):
-        super().init(name, health, damage)
+    def __init__(self, name: str, health: int, damage: int, heal: int):
+        super().__init__(name, health, damage)
         self.heal = heal
 
     def special_action(self, other):
@@ -46,8 +46,8 @@ class Healer(Character):
             print(f"{other.name} has max HP now")
 
 class Mage(Character):
-    def init(self, name: str, health: int, damage: int, magic: int):
-        super().init(name, health, damage)
+    def __init__(self, name: str, health: int, damage: int, magic: int):
+        super().__init__(name, health, damage)
         self.magic = magic
 
     def special_action(self, other):
@@ -55,6 +55,7 @@ class Mage(Character):
         other.weakened = True
         other.damage -= self.magic
         print(f"our big Mage {self.name} weakened {other.name}. {other.name}'s damage now= {other.damage}")
+        other.damage = original_damage
 
 michael = Warrior("Michael", 150, 20, 3)
 lisa = Warrior("Lisa", 100, 18, 2)
@@ -68,8 +69,8 @@ def user_characters(characters):
         print(f"character {i+1} : {character.name}")
     character1 = int(input("please enter your first character's number: "))
     character2 = int(input("please enter your second character's number: "))
-    if character1 == character2:
-        character2= int(input("you can't choose same character! try again: "))
+    while character1 == character2:
+        character2 = int(input("you can't choose the same character! try again: "))
     return [characters[character1-1], characters[character2-1]]
 
 def bot_characters(characters):
@@ -85,40 +86,29 @@ user_chars = user_characters(characters)
 bot_chars = bot_characters(characters)
 
 while True:
-    try:
-        player_char1 = user_chars[0]
-    except:
-        print(f"unfortunately, {player_char1} is dead, you have only {player_char2}")
-        player_char1= user_chars[1]
-    try:
-        player_char2= user_chars[1]
-    except:
-        print(f"unfortunately, {player_char2} is dead, you have only {player_char1}")
-        player_char2= user_chars[0]
-    # Automatically switch to the alive character if one is dead
-    if player_char1.health <= 0 and player_char2.health > 0:
-        print(f"{player_char1.name} is dead, switching to {player_char2.name}")
-        player_char1 = player_char2
-    elif player_char2.health <= 0 and player_char1.health > 0:
-        print(f"{player_char2.name} is dead, switching to {player_char1.name}")
-        player_char2 = player_char1
+    if user_chars[0].health <= 0 and user_chars[1].health > 0:
+        print(f"{user_chars[0].name} is dead, switching to {user_chars[1].name}")
+        user_chars[0] = user_chars[1]
+    elif user_chars[1].health <= 0 and user_chars[0].health > 0:
+        print(f"{user_chars[1].name} is dead, switching to {user_chars[0].name}")
+        user_chars[1] = user_chars[0]
 
     bot_char1 = bot_chars[0]
-    if len(bot_chars)==1:
+    if len(bot_chars) == 1:
         bot_char2 = bot_chars[0]
     else:
         bot_char2= bot_chars[1]
-    
-    num = int(input(f"please choose your character number:(1-{player_char1.name},2-{player_char2.name})"))
+
+    num = int(input(f"please choose your character number:(1-{user_chars[0].name}, 2-{user_chars[1].name})"))
     if num == 1:
-        present_char = player_char1
+        present_char = user_chars[0]
     elif num == 2:
-        present_char = player_char2
+        present_char = user_chars[1]
     else:
         print("invalid input!")
         continue
 
-    print(f"your characters= {player_char1.name}, {player_char2.name}\nenemy characters= {bot_char1.name}, {bot_char2.name}")
+    print(f"your characters= {user_chars[0].name}, {user_chars[1].name}\nenemy characters= {bot_char1.name}, {bot_char2.name}")
 
     bot_char = choice(bot_chars)
 
@@ -139,7 +129,7 @@ while True:
     if bot_char.health <= 0:
         print(f"{bot_char.name} is dead!")
         bot_chars.remove(bot_char)
-    
+
     bot_op = bot_choice_op(bot_char, choice_list)
     if bot_op == "attack":
         bot_char.attack(present_char)
