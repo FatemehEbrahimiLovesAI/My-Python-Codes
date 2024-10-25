@@ -1,0 +1,148 @@
+Pizza Shop System
+
+A simple Python project to manage a pizza shop, handling pizzas, customers, orders, and menu operations. The system includes functionalities for ordering pizzas, maintaining customer information, tracking order history, and displaying the menu.
+
+Project Structure
+
+The project is organized with the following main classes:
+
+Classes
+
+1. Pizza
+
+Represents a pizza item with attributes:
+
+name: Name of the pizza.
+
+size: Size of the pizza (e.g., small, medium, large).
+
+price: Price of the pizza.
+
+ingredients: List of ingredients in the pizza.
+
+
+Methods:
+
+get_price(): Returns the price of the pizza.
+
+description(): Prints a detailed description of the pizza.
+
+
+
+
+2. Customer
+
+Holds customer details with attributes:
+
+name: Customer's name.
+
+phone_number: Contact phone number.
+
+address: Delivery address.
+
+orders: A list of customer's past orders.
+
+
+Methods:
+
+add_order(order): Adds an order to the customer's history.
+
+get_order_history(): Displays the history of customer orders.
+
+
+
+
+3. Order
+
+Manages an individual order with attributes:
+
+order_ID: Unique identifier for the order.
+
+customer: The customer who placed the order.
+
+pizzas: List of pizzas in the order.
+
+status: Current status of the order (e.g., not paid, paid).
+
+
+Methods:
+
+add_pizza(pizza): Adds a pizza to the order.
+
+calculate_total(): Calculates the total cost of the order.
+
+update_status(status): Updates the order status.
+
+
+
+
+4. Menu
+
+Represents the pizza shop's menu.
+
+Attributes:
+
+pizzas: A list of available pizzas in the menu.
+
+
+Methods:
+
+add_pizza(pizza, price): Adds a pizza to the menu.
+
+remove_pizza(pizza): Removes a pizza from the menu.
+
+display_menu(): Displays the list of pizzas in the menu with prices.
+
+
+
+
+5. PizzaShop
+
+Central class to manage the pizza shop operations.
+
+Attributes:
+
+customers: List of customers.
+
+orders: List of orders.
+
+menu: Instance of the Menu class to manage the available pizzas.
+
+
+Methods: (To be implemented)
+
+add_customer()
+
+create_order()
+
+add_pizza_to_order()
+
+view_order()
+
+update_order_status()
+
+show_all_orders()
+
+
+
+
+
+How to Use
+
+1. Clone the repository.
+
+
+2. Ensure you have Python 3 installed.
+
+
+3. Add functionalities as needed in the PizzaShop class to complete order creation, customer addition, and menu display.
+
+
+
+Future Improvements
+
+Complete methods in PizzaShop class for managing customers and orders.
+
+Implement a user interface for the pizza ordering process.
+
+Add more validations and error handling.
