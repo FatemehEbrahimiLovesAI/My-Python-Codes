@@ -11,7 +11,7 @@ class Pizza:
     def description(self):
         print(f"Pizza name: {self.name}\nPizza price: {self.price}\nIngredients: {self.ingredients}")
 
-        
+
 class Customer:
     def __init__(self, name, phone_number, address):
         self.name = name
@@ -66,7 +66,10 @@ class Pizzeria:
     def __init__(self):
         self.customers = []
         self.orders = []
-        self.menu = Menu()
+       
+    def menu():
+        menu = Menu()
+        menu.display_menu()
 
     def add_customer(self, name, phone_number, address):
         customer = Customer(name, phone_number, address)
@@ -98,3 +101,30 @@ class Pizzeria:
     def show_all_orders(self):
         for i, order in enumerate(self.orders, start=1):
             print(f"{i}. Order ID: {order.order_ID}, Status: {order.status}")
+            
+      
+while True:
+    print("welcome to pizzeria management system")
+    print("what do you want to do?\n\t1-show menu\n\t2-go to orders pannel\n\t3-add new Pizza\n\t4-add new Customer")
+    present_choice = int(input("your choice= "))
+    
+    if present_choice == 1:
+        Pizzeria.menu()
+        
+    if present_choice == 2:
+        pass
+    
+    if present_choice == 3:
+        pizza_name = input("Please enter Pizza's name: ")
+        print('*'*30)
+        pizza_siza = input("Please enter Pizza's siza(Big/Medium/Smal): ")
+        print('*'*30)
+        pizza_price = int(input("Please enter Pizza's price: "))
+        print('*'*30)
+        this_pizza_ingredients = input("Please enter ingredients= (separate with ,)")
+        pizza_ingredients = this_pizza_ingredients.split(",")
+        new_pizza = Pizzeria.add_pizza_to_menu(pizza_name,pizza_siza,pizza_price,pizza_ingredients)
+        
+    if present_choice == 4:
+        pass
+        
