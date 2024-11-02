@@ -1,6 +1,6 @@
 Pizza Shop System
 
-A simple Python project to manage a pizza shop, handling pizzas, customers, orders, and menu operations. The system includes functionalities for ordering pizzas, maintaining customer information, tracking order history, and displaying the menu.
+A Python project to manage a pizza shop, handling operations for pizzas, customers, orders, and menu management. This system allows users to add and view pizzas, manage customers, create and track orders, and display the menu. Ideal for small businesses or for learning OOP in Python.
 
 Project Structure
 
@@ -14,11 +14,11 @@ Represents a pizza item with attributes:
 
 name: Name of the pizza.
 
-size: Size of the pizza (e.g., small, medium, large).
+size: Size of the pizza (Big, Medium, Small).
 
 price: Price of the pizza.
 
-ingredients: List of ingredients in the pizza.
+ingredients: List of ingredients.
 
 
 Methods:
@@ -32,29 +32,29 @@ description(): Prints a detailed description of the pizza.
 
 2. Customer
 
-Holds customer details with attributes:
+Holds customer details:
 
 name: Customer's name.
 
 phone_number: Contact phone number.
 
-address: Delivery address.
+address: Delivery address (optional).
 
-orders: A list of customer's past orders.
+orders: A list of the customer's orders.
 
 
 Methods:
 
 add_order(order): Adds an order to the customer's history.
 
-get_order_history(): Displays the history of customer orders.
+get_order_history(): Displays the customer's order history.
 
 
 
 
 3. Order
 
-Manages an individual order with attributes:
+Manages an individual order:
 
 order_ID: Unique identifier for the order.
 
@@ -62,7 +62,7 @@ customer: The customer who placed the order.
 
 pizzas: List of pizzas in the order.
 
-status: Current status of the order (e.g., not paid, paid).
+status: Current status of the order ("not paid", "paid", "canceled").
 
 
 Methods:
@@ -80,48 +80,46 @@ update_status(status): Updates the order status.
 
 Represents the pizza shop's menu.
 
-Attributes:
-
 pizzas: A list of available pizzas in the menu.
 
 
 Methods:
 
-add_pizza(pizza, price): Adds a pizza to the menu.
+add_pizza(pizza): Adds a pizza to the menu.
 
 remove_pizza(pizza): Removes a pizza from the menu.
 
-display_menu(): Displays the list of pizzas in the menu with prices.
+display_menu(): Displays the menu with pizza names and prices.
 
 
 
 
-5. PizzaShop
+5. Pizzeria
 
-Central class to manage the pizza shop operations.
-
-Attributes:
+Central class to manage the pizza shop's operations.
 
 customers: List of customers.
 
-orders: List of orders.
+orders: List of all orders.
 
-menu: Instance of the Menu class to manage the available pizzas.
+menu: Instance of the Menu class, managing available pizzas.
 
 
-Methods: (To be implemented)
+Methods:
 
-add_customer()
+display_menu(): Displays the menu.
 
-create_order()
+add_customer(name, phone_number, address): Adds a new customer.
 
-add_pizza_to_order()
+create_order(order_ID, customer): Creates an order for a customer.
 
-view_order()
+view_order(): Allows viewing of a specific order by ID.
 
-update_order_status()
+update_order_state(order, status): Updates the status of an order.
 
-show_all_orders()
+show_all_orders(): Displays all orders with their status.
+
+delete_order(order): Removes an order from the system.
 
 
 
@@ -129,20 +127,27 @@ show_all_orders()
 
 How to Use
 
-1. Clone the repository.
+1. Clone this repository to your local machine.
 
 
-2. Ensure you have Python 3 installed.
+2. Ensure Python 3.x is installed on your machine.
 
 
-3. Add functionalities as needed in the PizzaShop class to complete order creation, customer addition, and menu display.
+3. Run the system:
+
+Interact with the console interface to manage pizzas, customers, and orders.
+
+Choose options to add customers, create and manage orders, and update statuses as needed.
+
 
 
 
 Future Improvements
 
-Complete methods in PizzaShop class for managing customers and orders.
+Enhance User Interface: Implement a graphical user interface (GUI) for easier order management.
 
-Implement a user interface for the pizza ordering process.
+Expand Validations and Error Handling: Add more checks to handle user input errors.
 
-Add more validations and error handling.
+Order Status Tracking: Add timestamps or history tracking for status updates.
+
+Advanced Customer Management: Add features for editing customer details or searching by name.
