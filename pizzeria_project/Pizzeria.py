@@ -1,17 +1,30 @@
 class Pizza:
+    """
+    In this class, the pizzas in the pizzeria are
+    stored and managed with different characteristics.
+    
+    Attributes:
+        name(str) : it is pizza's name
+        size(str) : Each pizza has a specific size.
+        price(int) : Pizza payment price in dollars.
+        ingredients(list) : A list of different ingredients used in pizza baking.
+    
+    Example:
+    pepperoni_pizza = Pizza("pepperoni","medium",25,["Pepperoni sausage", "pizza cheese", "tomato", "red pepper", "ketchup", "thyme"])
+    """
     def __init__(self, name: str, size: str, price: int, ingredients):
         self.name = name
         self.size = size
         self.price = price
         self.ingredients = ingredients
         self.ingredients_str = ", ".join(self.ingredients)
-    
+
     def __str__(self):
         return f"{self.name} : \n\tsize = {self.size} , \n\tprice = {self.price} \n\t ingredients = {self.ingredients_str}"
-    
+
     def __repr__(self):
-        pass
-    
+        return f"Pizza('{self.name}','{self.size}',{self.price},{self.ingredients})"
+
     def get_price(self):
         return self.price
 
@@ -25,13 +38,13 @@ class Customer:
         self.phone_number = phone_number
         self.address = address
         self.orders = []
-    
+
     def __str__(self):
-        pass
-    
+        return f"{self.name}: \nphone = {self.phone_number}\naddress = {self.address}"
+
     def __repr__(self):
-        pass
-    
+        return f"Customer('{self.name}','{self.phone_number}','{self.address}')"
+
     def add_order(self, order):
         self.orders.append(order)
 
@@ -56,10 +69,14 @@ class Order:
         Order.orders.append(self)
 
     def __str__(self):
-        pass
-    
+        pizza_names = ", ".join([pizza.name for pizza in self.pizzas])
+        return (f"Order ID: {self.order_ID}\n"
+                f"Customer: {self.customer.name}\n"
+                f"Pizzas: {pizza_names if pizza_names else 'No pizzas added'}\n"
+                f"Status: {self.status}")
+
     def __repr__(self):
-        pass
+        return f"Order('{self.order_ID}', Customer('{self.customer.name}', '{self.customer.phone_number}', '{self.customer.address}'))"
 
     def add_pizza(self, pizza):
         self.pizzas.append(pizza)
@@ -74,13 +91,15 @@ class Order:
 class Menu:
     def __init__(self):
         self.pizzas = []
-    
+
     def __str__(self):
-        pass
-    
+        if not self.pizzas:
+            return "Menu is empty."
+        return "\n".join([f"{i+1}. {pizza.name} - {pizza.size} (${pizza.price})" for i, pizza in enumerate(self.pizzas)])
+
     def __repr__(self):
-        pass
-    
+        return f"Menu({self.pizzas})"
+
     def add_pizza(self, pizza):
         self.pizzas.append(pizza)
 
@@ -103,10 +122,18 @@ class Pizzeria:
         self.customers = []
         self.orders = []
         self.menu = Menu()
-    
+
     def __str__(self):
-        pass
-    
+        customer_names = ", ".join([customer.name for customer in self.customers])
+        order_ids = ", ".join([order.order_ID for order in self.orders])
+        return (f"Pizzeria:\n"
+                f"Customers: {customer_names if customer_names else 'No customers added'}\n"
+                f"Orders: {order_ids if order_ids else 'No orders created'}\n"
+                f"Menu:\n{str(self.menu)}")
+
+    def __repr__(self):
+        return f"Pizzeria(customers={self.customers}, orders={self.orders}, menu={self.menu})"
+
     def display_menu(self):
         self.menu.display_menu()
 
@@ -231,6 +258,3 @@ while True:
         customer_address = input("Please enter Customer's address if you need: ")
         print('*' * 35)
         pizzeria.add_customer(customer_name, customer_phone_number, customer_address)
-
-    else:
-        print("Please choose a valid option.")
