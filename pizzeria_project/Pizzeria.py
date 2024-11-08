@@ -13,6 +13,9 @@ class Pizza:
     pepperoni_pizza = Pizza("pepperoni","medium",25,["Pepperoni sausage", "pizza cheese", "tomato", "red pepper", "ketchup", "thyme"])
     """
     def __init__(self, name: str, size: str, price: int, ingredients):
+        """
+        In this function, all pizza attributes are set when creating the object.
+        """
         self.name = name
         self.size = size
         self.price = price
@@ -26,13 +29,35 @@ class Pizza:
         return f"Pizza('{self.name}','{self.size}',{self.price},{self.ingredients})"
 
     def get_price(self):
+        """
+        It returns the price of the pizza so that we don't need to directly access the pizza price attribute.
+        """
         return self.price
 
     def description(self):
+        """
+        It shows the characteristics of pizza
+        """
         print(f"Pizza name: {self.name}\nPizza price: {self.price}\nIngredients: {self.ingredients_str}")
 
 
 class Customer:
+    """
+    All customers who order pizza in the pizzeria are objects of this class.
+    
+    Attributes:
+        name (str): customer's name
+        
+        phone_number (str): The customer's contact number is used to notify them that their order is ready, 
+        as well as for when they may have forgotten to pay for their pizza.
+        
+        address (str): The customer's address is used when we want to deliver the order to their home or 
+        workplace.(It is not necessary cause Some customers only buy pizza at the pizzeria and there is 
+        no need to have it delivered to their home.)
+        
+    Example:
+        new_customer = Customer("Sara","09194562343","Tehran,Navab,Bolur sazi,Mohammadi Alley,plate 15,Unit one")
+    """
     def __init__(self, name: str, phone_number: str, address: str = ""):
         self.name = name
         self.phone_number = phone_number
@@ -89,6 +114,12 @@ class Order:
 
 
 class Menu:
+    """
+    The restaurant menu shows the pizzas and their prices.
+    
+    Example:
+        present_menu: Menu()
+    """
     def __init__(self):
         self.pizzas = []
 
@@ -101,15 +132,24 @@ class Menu:
         return f"Menu({self.pizzas})"
 
     def add_pizza(self, pizza):
+        """
+        Adds a pizza to the menu
+        """
         self.pizzas.append(pizza)
 
     def remove_pizza(self, pizza):
+        """
+        Removes a pizza from the menu.
+        """
         if pizza in self.pizzas:
             self.pizzas.remove(pizza)
         else:
             print("Pizza not found")
 
     def display_menu(self):
+        """
+        It shows everything that can be sold in the pizzeria
+        """
         if not self.pizzas:
             print("The menu is empty.")
         else:
@@ -118,6 +158,10 @@ class Menu:
 
 
 class Pizzeria:
+    """
+    A general class that connects all the classes and allows us to use only this class to manage the pizzeria
+    system without directly using other classes.
+    """
     def __init__(self):
         self.customers = []
         self.orders = []
@@ -135,19 +179,31 @@ class Pizzeria:
         return f"Pizzeria(customers={self.customers}, orders={self.orders}, menu={self.menu})"
 
     def display_menu(self):
+        """
+        It shows the pizzeria menu
+        """
         self.menu.display_menu()
 
     def add_customer(self, name, phone_number, address=""):
+        """
+        It is used when we have a new customer.
+        """
         customer = Customer(name, phone_number, address)
         self.customers.append(customer)
 
     def create_order(self, order_ID, customer):
+        """
+        When there is a new order, we register it like this.
+        """
         order = Order(order_ID, customer)
         self.orders.append(order)
         customer.add_order(order)
         return order
 
     def add_pizza_to_menu(self, name, size, price, ingredients):
+        """
+        Adds a new pizza to the menu.
+        """
         pizza = Pizza(name, size, price, ingredients)
         self.menu.add_pizza(pizza)
 
@@ -159,16 +215,25 @@ class Pizzeria:
         return self.orders[choice] if 0 <= choice < len(self.orders) else None
 
     def update_order_state(self, order, status):
+        """
+        When the order is paid, the status of the order can be changed through this method.
+        """
         if order in self.orders:
             order.update_status(status)
         else:
             print("Order not found")
 
     def show_all_orders(self):
+        """
+        View all orders.
+        """
         for i, order in enumerate(self.orders, start=1):
             print(f"{i}. Order ID: {order.order_ID}, Status: {order.status}")
 
     def delete_order(self, order):
+        """
+        you can delete an order with it.
+        """
         if order in self.orders:
             self.orders.remove(order)
         else:
