@@ -1,0 +1,108 @@
+README
+
+Telegram Bot: @FatemehEbrahimiGithub_bot
+
+This repository contains the source code for a simple Telegram bot. The bot provides interactive functionality for both regular users and administrators.
+
+
+---
+
+Features
+
+1. User Features:
+
+Give Me a Nickname! (Under construction)
+
+Tell Me a Joke! (Under construction)
+
+Tell Me a Fact! (Under construction)
+
+
+
+2. Admin Features:
+
+Add Nickname (Under construction)
+
+Add Joke (Under construction)
+
+Add Fact (Under construction)
+
+
+
+
+
+---
+
+How It Works
+
+When a user starts the bot using the /start command, the bot checks if the user is an admin or a regular user.
+
+Depending on the role, the bot presents either an Admin Panel or a User Panel with different options.
+
+Currently, all features are under construction, but the framework is set up for further development.
+
+
+
+---
+
+Requirements
+
+Python 3.8 or later
+
+pyTelegramBotAPI library
+
+
+Install the required library using pip:
+
+pip install pyTelegramBotAPI
+
+
+---
+
+File Structure
+
+Main Code:
+The entire bot logic is contained in the main Python script.
+
+Panels:
+
+Admins are shown an Admin Panel with options to add nicknames, jokes, or facts.
+
+Users are shown a User Panel with options to receive a nickname, joke, or fact.
+
+
+
+
+---
+
+How to Run
+
+1. Clone the repository:
+
+git clone https://github.com/YourUsername/YourRepository.git
+cd YourRepository
+
+
+2. Replace the bot token in the following line with your Telegram Bot API token:
+
+bot = telebot.TeleBot("YOUR_BOT_TOKEN")
+
+
+3. Run the bot:
+
+python bot.py
+
+
+
+
+---
+
+Future Development
+
+Implement dynamic nickname, joke, and fact management.
+
+Store and retrieve data using a database or file system.
+
+Add error handling for better stability.
+
+Extend functionality based on user feedback.
