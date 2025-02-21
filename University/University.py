@@ -18,48 +18,76 @@ class University():
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name},{self.address})"
+    
+    @classmethod
+    def add_faculty(self,name : str,university : str,location : str):
+        new_faculty = Faculty(name,university,location)
+        University.list_of_faculties.append(new_faculty)
 
-    def add_faculty(self):
-        pass
+    @classmethod
+    def add_course(self,name: str, faculties: list, lecturers: list):
+        new_course = Course_unit(name,faculties,lecturers)
+        University.list_of_courses.append(new_course)
 
-    def add_course(self):
-        pass
+    @classmethod
+    def add_student(self, name, student_id, date_of_birth, year_of_entry, city, dorm_situation=False, dorm_location="don't have"):
+        new_student = Student(name,student_id,date_of_birth)
+        University.list_of_students.append(new_student)
 
-    def add_student(self):
-        pass
+    @classmethod
+    def add_professor(self, name: str, courses: list):
+        new_professor = Professor(name,courses)
+        University.list_of_professors.append(new_professor)
 
-    def add_professor(self):
-        pass
+    @classmethod
+    def add_cook(self , name: str, staff_id: str):
+        new_cook = Cook(name,staff_id)
+        University.list_of_cooks.append(new_cook)
+    
+    @classmethod
+    def add_server(self, name: str, staff_id: str):
+        new_server = Server(name,staff_id)
+        University.list_of_servers.append(new_server)
 
-    def add_cook(self):
-        pass
+    @classmethod
+    def add_field(self , name: str, courses: list):
+        new_field = Field_of_study(name,courses)
+        University.list_of_fields.append(new_field)
 
-    def add_server(self):
-        pass
-
-    def add_field(self):
-        pass
-
+    @classmethod
     def remove_faculty(self):
-        pass
+        if self in University.list_of_faculties:
+            University.list_of_faculties.remove(self)
 
+    @classmethod
     def remove_course(self):
-        pass
+        if self in University.list_of_courses:
+            University.list_of_courses.remove(self)
 
+    @classmethod
     def remove_student(self):
-        pass
+        if self in University.list_of_students:
+            University.list_of_students.remove(self)
 
+    @classmethod
     def remove_professor(self):
-        pass
+        if self in University.list_of_professors:
+            University.list_of_professors.remove(self)
 
+    @classmethod
     def remove_cook(self):
-        pass
+        if self in University.list_of_cooks:
+            University.list_of_cooks.remove(self)
 
+    @classmethod
     def remove_server(self):
-        pass
+        if self in University.list_of_servers:
+            University.list_of_servers.remove(self)
 
+    @classmethod
     def remove_field(self):
-        pass
+        if self in University.list_of_fields:
+            University.list_of_fields.remove(self)
 
 class Faculty():
     list_of_courses = []
@@ -105,6 +133,7 @@ class Student():
         self.student_id = student_id
         self.date_of_birth = date_of_birth
         self.year_of_entry = year_of_entry
+        self.city = city
         self.dorm_situation = dorm_situation
         self.dorm_location = dorm_location
 
