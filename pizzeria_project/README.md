@@ -1,14 +1,17 @@
-Pizza Shop System
+# Pizza Shop System
 
 A Python project to manage a pizza shop, handling operations for pizzas, customers, orders, and menu management. This system allows users to add and view pizzas, manage customers, create and track orders, and display the menu. Ideal for small businesses or for learning OOP in Python.
 
-Project Structure
+---
+
+## Project Structure
 
 The project is organized with the following main classes:
 
-Classes
+---
+### Classes
 
-1. Pizza
+#### 1. Pizza
 
 Represents a pizza item with attributes:
 
@@ -21,7 +24,7 @@ price: Price of the pizza.
 ingredients: List of ingredients.
 
 
-Methods:
+#### Methods:
 
 get_price(): Returns the price of the pizza.
 
@@ -30,7 +33,7 @@ description(): Prints a detailed description of the pizza.
 
 
 
-2. Customer
+#### 2. Customer
 
 Holds customer details:
 
@@ -43,7 +46,7 @@ address: Delivery address (optional).
 orders: A list of the customer's orders.
 
 
-Methods:
+#### Methods:
 
 add_order(order): Adds an order to the customer's history.
 
@@ -52,7 +55,7 @@ get_order_history(): Displays the customer's order history.
 
 
 
-3. Order
+#### 3. Order
 
 Manages an individual order:
 
@@ -65,7 +68,7 @@ pizzas: List of pizzas in the order.
 status: Current status of the order ("not paid", "paid", "canceled").
 
 
-Methods:
+#### Methods:
 
 add_pizza(pizza): Adds a pizza to the order.
 
@@ -76,14 +79,14 @@ update_status(status): Updates the order status.
 
 
 
-4. Menu
+#### 4. Menu
 
 Represents the pizza shop's menu.
 
 pizzas: A list of available pizzas in the menu.
 
 
-Methods:
+#### Methods:
 
 add_pizza(pizza): Adds a pizza to the menu.
 
@@ -94,7 +97,7 @@ display_menu(): Displays the menu with pizza names and prices.
 
 
 
-5. Pizzeria
+#### 5. Pizzeria
 
 Central class to manage the pizza shop's operations.
 
@@ -105,7 +108,7 @@ orders: List of all orders.
 menu: Instance of the Menu class, managing available pizzas.
 
 
-Methods:
+#### Methods:
 
 display_menu(): Displays the menu.
 
@@ -125,7 +128,7 @@ delete_order(order): Removes an order from the system.
 
 
 
-How to Use
+## How to Use
 
 1. Clone this repository to your local machine.
 
@@ -142,7 +145,7 @@ Choose options to add customers, create and manage orders, and update statuses a
 
 
 
-Future Improvements
+## Future Improvements
 
 Enhance User Interface: Implement a graphical user interface (GUI) for easier order management.
 
