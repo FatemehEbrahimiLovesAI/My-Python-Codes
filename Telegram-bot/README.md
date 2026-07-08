@@ -1,13 +1,11 @@
-README
-
 Telegram Bot: @FatemehEbrahimiGithub_bot
 
-This repository contains the source code for a simple Telegram bot. The bot provides interactive functionality for both regular users and administrators.
+# This repository contains the source code for a simple Telegram bot. The bot provides interactive functionality for both regular users and administrators.
 
 
 ---
 
-Features
+## Features
 
 1. User Features:
 
@@ -33,7 +31,7 @@ Add Fact (Under construction)
 
 ---
 
-How It Works
+## How It Works
 
 When a user starts the bot using the /start command, the bot checks if the user is an admin or a regular user.
 
@@ -45,7 +43,7 @@ Currently, all features are under construction, but the framework is set up for 
 
 ---
 
-Requirements
+## Requirements
 
 Python 3.8 or later
 
@@ -59,7 +57,7 @@ pip install pyTelegramBotAPI
 
 ---
 
-File Structure
+## File Structure
 
 Main Code:
 The entire bot logic is contained in the main Python script.
@@ -75,7 +73,7 @@ Users are shown a User Panel with options to receive a nickname, joke, or fact.
 
 ---
 
-How to Run
+## How to Run
 
 1. Clone the repository:
 
@@ -97,7 +95,7 @@ python bot.py
 
 ---
 
-Future Development
+## Future Development
 
 Implement dynamic nickname, joke, and fact management.
 
